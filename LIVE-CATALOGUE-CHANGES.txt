@@ -1,0 +1,49 @@
+JAY KAY AQUA TECH — LIVE DATABASE PRODUCT CATALOGUE
+
+What was changed
+----------------
+1. Added api/products.php.
+   - Reads active products from the same MySQL database used by the admin panel.
+   - Supports category filtering and product-detail lookup by slug.
+   - Normalizes admin-uploaded image paths (../assets/...) for the public site.
+   - Returns additional product images as well as the main image.
+
+2. Updated the public product listing pages:
+   - products.html
+   - aerators.html
+   - aerator-spares.html
+   - aqua-chemicals.html
+   - aqua-medicine.html
+   - floating-products.html
+   - long-arm-aerator.html
+   - probiotics.html
+   Product cards are now rendered from the database instead of being hardcoded.
+
+3. Updated assets/script.js.
+   - Loads products from api/products.php.
+   - Builds category/subcategory filters from live database data.
+   - Renders product cards automatically.
+   - Loads live product detail data.
+   - Loads related products from the database.
+
+4. Rebuilt product-details.html as a clean dynamic product-detail template.
+
+5. Added a small CSS placeholder for products without an image.
+
+Important
+---------
+The existing admin database and admin panel are still used. No database schema change is required.
+
+For XAMPP/local use, keep the project in the same web root and make sure:
+- MySQL/MariaDB is running.
+- The database name/credentials in admin/includes/db-config.php are correct.
+- The database has the products/categories tables.
+- The browser opens the site through http://localhost/... rather than file://...
+
+After replacing the project files, hard-refresh the browser (Ctrl+F5).
+
+Expected behavior
+-----------------
+Admin Panel -> Add Product -> Save -> product appears automatically on the matching public category page.
+
+Only products with status = Active are shown publicly.
